@@ -9,13 +9,15 @@
     "test": "jest",
     "linter": "eslint 'src/**/*.{js,jsx}'",
     "prettier": "prettier --write 'src/**/*.{js,jsx}'",
-    "dev": "npx react-native run-android && npx react-native start"
+    "dev": "npx react-native run-android && npx react-native start",
+    "clean": "react-native-clean-project"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "react": "18.0.0",
     "react-native": "0.69.5",
+    "react-native-image-picker": "^4.10.0",
     "react-native-safe-area-context": "^4.3.3",
     "react-native-screens": "^3.17.0",
     "react-native-vector-icons": "^9.2.0"
@@ -37,6 +39,7 @@
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.70.3",
     "prettier": "^2.7.1",
+    "react-native-clean-project": "^4.0.1",
     "react-test-renderer": "18.0.0"
   },
   "jest": {
