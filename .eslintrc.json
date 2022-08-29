@@ -10,5 +10,11 @@
     "sourceType": "module"
   },
   "plugins": ["react", "react-native"],
-  "rules": {}
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": false }],
+    "react/prop-types": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off"
+  }
 }
