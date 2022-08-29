@@ -4,11 +4,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { Colors } from "../constants/Colors";
 import IconButton from "./IconButton";
 
-export default function TakePhoto({imageUri, onOpenCamera}) {
+export default function TakePhoto({ imageUri, onOpenCamera }) {
   return (
     <View style={styles.takeContainer}>
       {imageUri ? (
-        <Image source={{uri: imageUri}} style={styles.image} />
+        <Image source={{ uri: imageUri }} style={styles.image} />
       ) : (
         <>
           <View style={styles.iconContainer}>
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     color: Colors.primary200,
     fontSize: 16,
   },
-  image:{
+  image: {
     height: "100%",
-    width: "100%"
+    width: "100%",
   },
   takeContainer: {
     alignItems: "center",
@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 12,
     overflow: "hidden",
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
