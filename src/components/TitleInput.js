@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { Colors } from '../constants/Colors';
+import { Colors } from "../constants/Colors";
 
 export default function TitleInput() {
   return (
@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.primary700,
     borderBottomWidth: 2,
     borderRadius: 4,
-    fontSize:16,
+    fontSize: 16,
     marginVertical: 12,
     paddingHorizontal: 4,
     paddingVertical: 6,
-  }
+  },
 });

@@ -1,12 +1,15 @@
-import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import React from "react";
+import { Pressable, StyleSheet } from "react-native";
 
-export default function IconButton({Icon, name, color, size, onPress}) {
+export default function IconButton({ Icon, name, color, size, onPress }) {
   return (
-      <Pressable style={({pressed})=>([styles.button, pressed && styles.pressed])} onPress={onPress}>
-        <Icon name={name} color={color} size={size}/>
-      </Pressable>
-  )
+    <Pressable
+      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      onPress={onPress}
+    >
+      <Icon name={name} color={color} size={size} />
+    </Pressable>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -17,5 +20,5 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.7,
-  }
-})
+  },
+});
