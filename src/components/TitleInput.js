@@ -1,11 +1,16 @@
-import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
-import { Colors } from "../constants/Colors";
+import React from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {Colors} from '../constants/Colors';
 
-export default function TitleInput() {
+export default function TitleInput({title, setTitle}) {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textInput} placeholder="Please enter title" />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Please enter title"
+        value={title}
+        onChangeText={setTitle}
+      />
     </View>
   );
 }

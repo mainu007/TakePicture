@@ -1,9 +1,9 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Colors } from "../constants/Colors";
-import ImageItem from "./ImageItem";
+import React from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Colors} from '../constants/Colors';
+import ImageItem from './ImageItem';
 
-export default function ImageList({ data }) {
+export default function ImageList({data}) {
   if (!data) {
     return (
       <View style={styles.fallbackContainer}>
@@ -16,7 +16,7 @@ export default function ImageList({ data }) {
 
   return (
     <ScrollView>
-      {data.map(({ imageUri, title }) => (
+      {data.map(({imageUri, title}) => (
         <ImageItem imageUri={imageUri} title={title} />
       ))}
     </ScrollView>
@@ -25,9 +25,9 @@ export default function ImageList({ data }) {
 
 const styles = StyleSheet.create({
   fallbackContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   fallbackText: {
     color: Colors.primary200,

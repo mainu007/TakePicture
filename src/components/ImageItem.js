@@ -1,7 +1,7 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
-export default function ImageItem({ imageUri, title }) {
+export default function ImageItem({imageUri, title}) {
   return (
     <View>
       <Image source={imageUri} style={styles.image} />
@@ -12,7 +12,7 @@ export default function ImageItem({ imageUri, title }) {
 
 const styles = StyleSheet.create({
   image: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
   },
 });

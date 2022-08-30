@@ -1,10 +1,10 @@
-import React from "react";
-import { Pressable, StyleSheet } from "react-native";
+import React from 'react';
+import {Pressable, StyleSheet} from 'react-native';
 
-export default function IconButton({ Icon, name, color, size, onPress }) {
+export default function IconButton({Icon, name, color, size, onPress}) {
   return (
     <Pressable
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      style={({pressed}) => [styles.button, pressed && styles.pressed]}
       onPress={onPress}
     >
       <Icon name={name} color={color} size={size} />
@@ -14,8 +14,8 @@ export default function IconButton({ Icon, name, color, size, onPress }) {
 
 const styles = StyleSheet.create({
   button: {
-    alignContent: "center",
-    justifyContent: "center",
+    alignContent: 'center',
+    justifyContent: 'center',
     margin: 4,
   },
   pressed: {

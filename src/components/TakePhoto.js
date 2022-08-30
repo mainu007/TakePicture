@@ -1,14 +1,14 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { Colors } from "../constants/Colors";
-import IconButton from "./IconButton";
+import React from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Colors} from '../constants/Colors';
+import IconButton from './IconButton';
 
-export default function TakePhoto({ imageUri, onOpenCamera }) {
+export default function TakePhoto({imageUri, onOpenCamera}) {
   return (
     <View style={styles.takeContainer}>
       {imageUri ? (
-        <Image source={{ uri: imageUri }} style={styles.image} />
+        <Image source={{uri: imageUri}} style={styles.image} />
       ) : (
         <>
           <View style={styles.iconContainer}>
@@ -29,25 +29,25 @@ export default function TakePhoto({ imageUri, onOpenCamera }) {
 
 const styles = StyleSheet.create({
   iconContainer: {
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   iconText: {
     color: Colors.primary200,
     fontSize: 16,
   },
   image: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
   },
   takeContainer: {
-    alignItems: "center",
-    alignSelf: "center",
+    alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: Colors.gray600,
     borderRadius: 6,
     height: 220,
-    justifyContent: "center",
+    justifyContent: 'center',
     marginBottom: 12,
-    overflow: "hidden",
-    width: "100%",
+    overflow: 'hidden',
+    width: '100%',
   },
 });
