@@ -8,6 +8,7 @@ export default function TitleInput({title, setTitle}) {
       <TextInput
         style={styles.textInput}
         placeholder="Please enter title"
+        placeholderTextColor="#666666"
         value={title}
         onChangeText={setTitle}
       />

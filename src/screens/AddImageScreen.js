@@ -42,9 +42,11 @@ export default function AddImage({navigation}) {
       grantedStorage === PermissionsAndroid.RESULTS.GRANTED
     ) {
       const result = await launchCamera(options);
-      const image = result.assets[0];
-      setImageUri(image.uri);
-      setImageFile({...image});
+      if (result.assets) {
+        const image = result.assets[0];
+        setImageUri(image.uri);
+        setImageFile({...image});
+      }
     }
   };
 
