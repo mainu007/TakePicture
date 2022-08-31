@@ -3,19 +3,20 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Colors} from '../constants/Colors';
 
-export default function ButtonOutline({title, onPress, disabled}) {
+export default function ButtonOutline({title, onPress, disabled, color}) {
   return (
     <Pressable
       style={({pressed}) => [
         styles.container,
         disabled && styles.buttonDisabled,
         pressed && styles.pressed,
+        color && {borderColor: color},
       ]}
       onPress={onPress}
       disabled={disabled}
     >
-      <AntDesign name="save" size={24} color={Colors.primary700} />
-      <Text style={styles.text}>{title}</Text>
+      <AntDesign name="save" size={24} color={color || Colors.primary700} />
+      <Text style={[styles.text, color && {color: color}]}>{title}</Text>
     </Pressable>
   );
 }

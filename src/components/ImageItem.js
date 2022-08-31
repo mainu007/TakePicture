@@ -1,27 +1,26 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet} from 'react-native';
 import {Colors} from '../constants/Colors';
 
-export default function ImageItem({imageUri, title}) {
+export default function ImageItem({id, imageUri, title}) {
+  const navigation = useNavigation();
+  const pressHandler = () => {
+    navigation.navigate('ImageDetails', {id, title, imageUri});
+  };
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        resizeMode="cover"
-        source={{uri: imageUri}}
-        style={styles.imageContainer}
-      >
-        {/* <Image source={{uri: imageUri}} style={styles.image} /> */}
-        <Text style={styles.titleText}>{title}</Text>
-      </ImageBackground>
-    </View>
+    <Pressable onPress={pressHandler} style={styles.container}>
+      <Image source={{uri: imageUri}} style={styles.image} />
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '47%',
+    width: '49%',
     height: 170,
-    marginBottom: 16,
+    marginBottom: 8,
   },
   imageContainer: {
     flex: 1,
@@ -33,8 +32,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   titleText: {
+    paddingVertical: 2,
     color: Colors.primary50,
     textAlign: 'center',
-    backgroundColor: Colors.grayTran600,
+    backgroundColor: '#00000021',
+    fontWeight: 'bold',
   },
 });

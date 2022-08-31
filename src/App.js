@@ -31,6 +31,9 @@ const homeScreenOptions = ({navigation}) => ({
       onPress={() => navigation.navigate('AddImage')}
     />
   ),
+  contentStyle: {
+    backgroundColor: Colors.primary50,
+  },
 });
 
 const AddScreenOptions = {

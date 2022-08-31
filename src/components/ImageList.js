@@ -4,7 +4,7 @@ import {Colors} from '../constants/Colors';
 import ImageItem from './ImageItem';
 
 export default function ImageList({data}) {
-  if (!data) {
+  if (!data || data?.length <= 0) {
     return (
       <View style={styles.fallbackContainer}>
         <Text style={styles.fallbackText}>
@@ -13,7 +13,6 @@ export default function ImageList({data}) {
       </View>
     );
   }
-  console.log('mr🎉', data);
   return (
     <FlatList
       data={data}
@@ -21,7 +20,7 @@ export default function ImageList({data}) {
       columnWrapperStyle={{justifyContent: 'space-between'}}
       keyExtractor={({id}) => id}
       renderItem={({item}) => (
-        <ImageItem imageUri={item.imageUri} title={item.title} />
+        <ImageItem imageUri={item.imageUri} title={item.title} id={item.id} />
       )}
     />
   );
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   fallbackText: {
-    color: Colors.primary200,
+    color: Colors.gray700,
     fontSize: 16,
   },
 });

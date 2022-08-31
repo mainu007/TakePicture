@@ -11,6 +11,7 @@ export default function Home() {
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    setLoading(true);
     firestore()
       .collection('pictures')
       .orderBy('createdAt', 'desc')
