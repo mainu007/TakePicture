@@ -1,24 +1,33 @@
 import React, {useEffect, useState} from 'react';
-import {PermissionsAndroid, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  PermissionsAndroid,
+  ScrollView,
+  StyleSheet,
+  Text,
+  // eslint-disable-next-line comma-dangle, prettier/prettier
+  View
+} from 'react-native';
 import {launchCamera} from 'react-native-image-picker';
 import ButtonOutline from '../components/ButtonOutline';
 import TakePhoto from '../components/TakePhoto';
 import TitleInput from '../components/TitleInput';
+import {Colors} from '../constants/Colors';
+import uploadFile from '../utils/uploadFile';
 
-export default function AddImage() {
+export default function AddImage({navigation}) {
   const [title, setTitle] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [imageUri, setImageUri] = useState('');
-  const [file, setFile] = useState({
-    uri: '',
-    type: '',
-    name: '',
-  });
+  const [imageFile, setImageFile] = useState({});
+  const [transferred, setTransferred] = useState(0);
+  const [uploading, setUploading] = useState(false);
 
   const options = {
     saveToPhotos: true,
     mediaType: 'photo',
     includeBase64: false,
+    quality: 0.5,
   };
 
   const openCamera = async () => {
@@ -33,13 +42,18 @@ export default function AddImage() {
       grantedStorage === PermissionsAndroid.RESULTS.GRANTED
     ) {
       const result = await launchCamera(options);
-      const {uri, type, fileName} = result.assets[0];
-      setImageUri(uri);
-      setFile({uri, type, name: fileName});
+      const image = result.assets[0];
+      setImageUri(image.uri);
+      setImageFile({...image});
     }
   };
 
-  const saveHandler = async () => {};
+  const saveHandler = async () => {
+    setUploading(true);
+    await uploadFile({...imageFile, setTransferred});
+    setUploading(false);
+    navigation.navigate('Home');
+  };
 
   useEffect(() => {
     if (title && imageUri) {
@@ -54,11 +68,20 @@ export default function AddImage() {
       <View style={styles.innerContainer}>
         <TitleInput title={title} setTitle={setTitle} />
         <TakePhoto imageUri={imageUri} onOpenCamera={openCamera} />
-        <ButtonOutline
-          title="Save"
-          onPress={saveHandler}
-          disabled={buttonDisabled}
-        />
+        {uploading ? (
+          <View>
+            <ActivityIndicator size="large" color={Colors.primary200} />
+            <Text style={styles.uploadProgressText}>
+              {transferred} % Completed!
+            </Text>
+          </View>
+        ) : (
+          <ButtonOutline
+            title="Save"
+            onPress={saveHandler}
+            disabled={buttonDisabled}
+          />
+        )}
       </View>
     </ScrollView>
   );
@@ -71,5 +94,11 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     marginVertical: 24,
+  },
+  uploadProgressText: {
+    fontSize: 16,
+    color: Colors.primary200,
+    marginVertical: 12,
+    textAlign: 'center',
   },
 });

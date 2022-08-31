@@ -4,9 +4,9 @@ import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import IconButton from './components/IconButton';
 import {Colors} from './constants/Colors';
-import AddImage from './screens/AddImage';
-import Home from './screens/Home';
-import ImageDetails from './screens/ImageDetails';
+import AddImage from './screens/AddImageScreen';
+import Home from './screens/HomeScreen';
+import ImageDetails from './screens/ImageDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
