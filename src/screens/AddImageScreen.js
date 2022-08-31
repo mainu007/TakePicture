@@ -12,6 +12,7 @@ import ButtonOutline from '../components/ButtonOutline';
 import TakePhoto from '../components/TakePhoto';
 import TitleInput from '../components/TitleInput';
 import {Colors} from '../constants/Colors';
+import addPost from '../utils/addPost';
 import uploadFile from '../utils/uploadFile';
 
 export default function AddImage({navigation}) {
@@ -49,7 +50,8 @@ export default function AddImage({navigation}) {
 
   const saveHandler = async () => {
     setUploading(true);
-    await uploadFile({...imageFile, setTransferred});
+    const dbImageUri = await uploadFile({...imageFile, setTransferred});
+    await addPost({title, imageUri: dbImageUri});
     setUploading(false);
     navigation.navigate('Home');
   };
