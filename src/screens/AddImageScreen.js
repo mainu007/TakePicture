@@ -24,7 +24,7 @@ export default function AddImage({navigation}) {
   const [uploading, setUploading] = useState(false);
 
   const options = {
-    saveToPhotos: true,
+    saveToPhotos: false,
     mediaType: 'photo',
     includeBase64: false,
     quality: 0.5,

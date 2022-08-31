@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../constants/Colors';
 import ImageItem from './ImageItem';
 
@@ -13,13 +13,17 @@ export default function ImageList({data}) {
       </View>
     );
   }
-
+  console.log('mr🎉', data);
   return (
-    <ScrollView>
-      {data.map(({imageUri, title}) => (
-        <ImageItem imageUri={imageUri} title={title} />
-      ))}
-    </ScrollView>
+    <FlatList
+      data={data}
+      numColumns={2}
+      columnWrapperStyle={{justifyContent: 'space-between'}}
+      keyExtractor={({id}) => id}
+      renderItem={({item}) => (
+        <ImageItem imageUri={item.imageUri} title={item.title} />
+      )}
+    />
   );
 }
 
