@@ -5,7 +5,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  // eslint-disable-next-line comma-dangle, prettier/prettier
   View
 } from 'react-native';
 import {launchCamera} from 'react-native-image-picker';
