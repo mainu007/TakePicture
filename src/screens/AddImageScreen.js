@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {
-  ActivityIndicator,
-  PermissionsAndroid,
-  ScrollView,
+  ActivityIndicator, ScrollView,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 import {launchCamera} from 'react-native-image-picker';
+import {check, PERMISSIONS, request} from 'react-native-permissions';
 import ButtonOutline from '../components/ButtonOutline';
 import TakePhoto from '../components/TakePhoto';
 import TitleInput from '../components/TitleInput';
@@ -30,17 +29,30 @@ export default function AddImage({navigation}) {
     quality: 0.5,
   };
 
+  const cameraPermission = async () => {
+    const result = await request(PERMISSIONS.ANDROID.CAMERA);
+    return result;
+  };
+
+  const storagePermission = async () => {
+    const result = await request(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE);
+    return result;
+  };
+
   const openCamera = async () => {
-    const grantedCamera = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.CAMERA,
+    const checkCamera = await check(PERMISSIONS.ANDROID.CAMERA);
+    if (checkCamera !== 'granted') {
+      await cameraPermission();
+    }
+
+    const checkStorage = await check(
+      PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE
     );
-    const grantedStorage = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-    );
-    if (
-      grantedCamera === PermissionsAndroid.RESULTS.GRANTED &&
-      grantedStorage === PermissionsAndroid.RESULTS.GRANTED
-    ) {
+    if (checkStorage !== 'granted') {
+      await storagePermission();
+    }
+
+    if (checkCamera === 'granted' && checkStorage === 'granted') {
       const result = await launchCamera(options);
       if (result.assets) {
         const image = result.assets[0];

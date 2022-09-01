@@ -226,6 +226,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+        storeFile file('tmd_take_picture.keystore')
+        storePassword '#Tmj@n1.0'
+        keyAlias 'tmj_take_picture_alias'
+        keyPassword '#Tmj@n1.0'
+        }
     }
     buildTypes {
         debug {
@@ -234,7 +240,8 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
